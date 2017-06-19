@@ -238,6 +238,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v5.4.27",
             "source": {
                 "type": "git",
@@ -248,6 +249,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/66f5e1b37cbd66e730ea18850ded6dc0ad570404",
                 "reference": "66f5e1b37cbd66e730ea18850ded6dc0ad570404",
+=======
+            "version": "v5.4.26",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "a7ebbfab64111e24f8e584db64e2be9279ded357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a7ebbfab64111e24f8e584db64e2be9279ded357",
+                "reference": "a7ebbfab64111e24f8e584db64e2be9279ded357",
+>>>>>>> 2072a181c60d39c1aebecad91b7b08f611a4a210
                 "shasum": ""
             },
             "require": {
@@ -363,7 +376,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-06-15 19:08:25"
+=======
+            "time": "2017-06-13 18:58:49"
+>>>>>>> 2072a181c60d39c1aebecad91b7b08f611a4a210
         },
         {
             "name": "laravel/tinker",
@@ -567,6 +584,7 @@
         },
         {
             "name": "monolog/monolog",
+<<<<<<< HEAD
             "version": "1.23.0",
             "source": {
                 "type": "git",
@@ -577,6 +595,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
                 "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
+=======
+            "version": "1.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1e044bc4b34e91743943479f1be7a1d5eb93add0",
+                "reference": "1e044bc4b34e91743943479f1be7a1d5eb93add0",
+>>>>>>> 2072a181c60d39c1aebecad91b7b08f611a4a210
                 "shasum": ""
             },
             "require": {
@@ -597,7 +627,11 @@
                 "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
+<<<<<<< HEAD
                 "swiftmailer/swiftmailer": "^5.3|^6.0"
+=======
+                "swiftmailer/swiftmailer": "~5.3"
+>>>>>>> 2072a181c60d39c1aebecad91b7b08f611a4a210
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -641,7 +675,11 @@
                 "logging",
                 "psr-3"
             ],
+<<<<<<< HEAD
             "time": "2017-06-19 01:22:40"
+=======
+            "time": "2017-03-13 07:08:03"
+>>>>>>> 2072a181c60d39c1aebecad91b7b08f611a4a210
         },
         {
             "name": "mtdowling/cron-expression",

@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('mileage/create', 'MileageController@create');
+Route::get('mileage/show/{id}', 'MileageController@show');
+Route::post('mileage/origination', 'MileageController@origination');
+Route::post('mileage/store', 'MileageController@store');
+
+Route::resource('traveler', 'TravelersController');
+
+
