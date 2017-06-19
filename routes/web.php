@@ -13,10 +13,6 @@
 
 
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('mileage/create', 'MileageController@create');
 Route::get('mileage/show/{id}', 'MileageController@show');
 Route::post('mileage/origination', 'MileageController@origination');
