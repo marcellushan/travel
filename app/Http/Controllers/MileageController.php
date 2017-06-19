@@ -4,81 +4,80 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use URL;
+use \App\Mileage;
+
+use Session;
+
 class MileageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        echo 'create';
+
+        return view('mileage.from_home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function origination(Request $request)
+    {
+//       dd($request->all());
+        $origination = $request->origination;
+        $termination = $request->termination;
+//        dd($data);
+//        $data->return;
+        return view('mileage.load_images')->with(compact('origination','termination'));
+
+    }
+
     public function store(Request $request)
     {
-        //
+        $mileage = new Mileage();
+        $mileage->fill($request->all());
+//        dd($mileage);
+        if($request->file('commute_map')) {
+            $file = $request->file('commute_map');
+            //Move Uploaded File
+            $destinationPath = 'uploads';
+            $myRandom = rand(1, 10000);
+            $myPath = $myRandom . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $myPath);
+            $service= URL::to('/') . "/uploads/" . $myPath;
+            $mileage->commute_map = $service;
+        }
+
+        if($request->file('home_to_destination_map')) {
+            $file = $request->file('home_to_destination_map');
+            //Move Uploaded File
+            $destinationPath = 'uploads';
+            $myRandom = rand(1, 10000);
+            $myPath = $myRandom . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $myPath);
+            $service= URL::to('/') . "/uploads/" . $myPath;
+            $mileage->home_to_destination_map = $service;
+        }
+
+        if($request->file('campus_to_destination_map')) {
+            $file = $request->file('campus_to_destination_map');
+            //Move Uploaded File
+            $destinationPath = 'uploads';
+            $myRandom = rand(1, 10000);
+            $myPath = $myRandom . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $myPath);
+            $service= URL::to('/') . "/uploads/" . $myPath;
+            $mileage->campus_to_destination_map = $service;
+        }
+
+        $mileage->travelers_id =  Session::get('id');
+        $mileage->save();
+        return redirect('mileage/show/' . $mileage->id);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id) {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        echo $id;
+        $mileage = Mileage::find($id);
+        dd($mileage);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

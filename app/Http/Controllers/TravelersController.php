@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use \App\Traveler;
 
+use Session;
+
 class TravelersController extends Controller
 {
     /**
@@ -37,15 +39,14 @@ class TravelersController extends Controller
     public function store(Request $request)
     {
 
-//        dd($request);
-        $data = $request->only(['first_name','last_name','departure_date','destination','return_date']);
+        $data = $request->all();
         $traveler = new Traveler($data);
-        $traveler->departure_time = $request->departure_hour .':' . $request->departure_minute . ' ' .$request->departure_AM;
-        $traveler->return_time = $request->return_hour .':' . $request->return_minute . ' ' .$request->return_AM;
         $traveler->fill($data);
+        $traveler->departure_time = implode(":", $request->departure_time);
+        $traveler->return_time = implode(":", $request->return_time);
         $traveler->save();
+        Session::put('id',$traveler->id);
         return redirect('mileage/create');
-//
     }
 
     /**
