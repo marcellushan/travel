@@ -14,9 +14,11 @@
 
 
 Route::get('mileage/create', 'MileageController@create');
-Route::get('mileage/show/{id}', 'MileageController@show');
+Route::get('mileage/show', 'MileageController@show');
+Route::get('mileage/comparison/{id}', 'MileageController@comparison');
 Route::post('mileage/origination', 'MileageController@origination');
 Route::post('mileage/store', 'MileageController@store');
+Route::post('mileage/update_rental', 'MileageController@updateRental');
 
 Route::resource('traveler', 'TravelersController');
 

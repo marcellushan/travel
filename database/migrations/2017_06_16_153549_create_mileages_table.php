@@ -23,7 +23,8 @@ class CreateMileagesTable extends Migration
             $table->string('commute_map')->nullable();
             $table->string('home_to_destination_map')->nullable();
             $table->string('campus_to_destination_map')->nullable();
-            $table->integer('travelers_id')->nullable();
+            $table->integer('rental_rate')->nullable();
+            $table->integer('traveler_id')->nullable();
 
             $table->timestamps();
         });

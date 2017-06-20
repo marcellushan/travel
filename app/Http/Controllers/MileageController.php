@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use URL;
 use \App\Mileage;
+use \App\Traveler;
 
 use Session;
 
@@ -67,17 +68,34 @@ class MileageController extends Controller
             $mileage->campus_to_destination_map = $service;
         }
 
-        $mileage->travelers_id =  Session::get('id');
+        $mileage->traveler_id =  Session::get('id');
         $mileage->save();
-        return redirect('mileage/show/' . $mileage->id);
+        return redirect('mileage/show/');
 
     }
 
-    public function show($id) {
+    public function show() {
 
-        echo $id;
-        $mileage = Mileage::find($id);
-        dd($mileage);
+        $data = Traveler::find(Session::get('id'));
+        $mileage = $data->mileage;
+        dd($mileage->tier_1);
+        if(! $mileage->rental_rate && $mileage->roundtripmileage >= 200)
+            return redirect('mileage/comparison/' . $mileage->id);
+        return view('mileage.show')->with(compact('data','mileage'));
 
+    }
+
+    public function comparison($id) {
+
+        return view('mileage.comparison')->with(compact('id'));
+
+    }
+
+    public function updateRental(Request $request)
+    {
+        $data = Mileage::find($request->id);
+        $data->rental_rate = $request->rental_rate;
+        $data->save();
+        return redirect('mileage/show/');
     }
 }

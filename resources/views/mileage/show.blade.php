@@ -15,37 +15,52 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h2>Roundtrip Destination Mileage:  {{$data->destination_mileage}}</h2>
-                @if($data->commute)
-                    <h2>Commute Mileage:  {{($data->depart ? "Depart " . $data->commute_mileage: '')}}{{($data->return ? " Return " . $data->commute_mileage: '')}}</h2>
+                <h2>Roundtrip Destination Mileage:  {{$mileage->roundtripmileage}}</h2>
+                @if($mileage->commute)
+                    <h2>Commute Mileage: {{($mileage->commute)}}</h2>
                 @endif
-                @if($data->rental_cost)
-                    <h2>Cost Comparison: ${{number_format($data->rental_cost,2)}}</h2>
+                @if($mileage->rental_rate)
+                    <h2>Cost Comparison: ${{number_format($mileage->rental_rate,2)}}</h2>
                 @endif
             </div>
             <div class="col-md-6">
                 <h2>Computation:</h2>
-                <h4>Destination Mileage {{$data->commute}}= Reimbursable Mileage</h4>
-                <h4>{{$data->destination_mileage}}
-                    @if($data->commute)
-                        - {{$data->commute_miles}} = {{$data->destination_mileage - $data->commute_miles}}
-                    @endif
-                </h4>
+                @if($mileage->commute)
+                    <h3>Reimbursable Mileage {{$mileage->roundtripmileage}} - {{$mileage->commute}}  =  {{$mileage->roundtripmileage-$mileage->commute}} </h3>
+                @else
+                    <h3>Reimbursable Mileage {{$mileage->roundtripmileage}}</h3>
+                @endif
+                {{--<h4>{{$data->destination_mileage}}--}}
+
+                        {{--- {{$data->commute_miles}} = {{$data->destination_mileage - $data->commute_miles}}--}}
+
+                {{--</h4>--}}
                 <h2>Reimbursement:</h2>
-                <h4>Reimbursable Mileage * Reimbursement Rate</h4>
-                <h1>{{$data->destination_mileage - $data->commute_miles}} * {{$data->rate}} = ${{$data->mileage}}</h1>
+                @if($mileage->rental_rate > ($mileage->roundtripmileage-$mileage->commute) * .535)
+                    <h1>Tier 1 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.535 = ${{($mileage->roundtripmileage-$mileage->commute) * .535}}</h1>
+                @else
+                    <h1>Tier 2 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.170 = ${{($mileage->roundtripmileage-$mileage->commute) * .17}}</h1>
+                @endif
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <h2>Destination Map</h2>
-                <img src="{{$data->destination_image}}" height="300px" width="300px" >
-            </div>
-            @if($data->commute)
-            <div class="col-md-6">
-                <h2>Commute Map</h2>
-                <img src="{{$data->commute_image}}" height="300px" width="300px" >
-            </div>
+            @if($mileage->campus_to_destination_map)
+                <div class="col-md-4">
+                    <h2>Campus to Destination Map</h2>
+                    <img src="{{$mileage->campus_to_destination_map}}" height="300px" width="300px" >
+                </div>
+            @endif
+            @if($mileage->commute_map)
+                <div class="col-md-4">
+                    <h2>Commute Map</h2>
+                    <img src="{{$mileage->commute_map}}" height="300px" width="300px" >
+                </div>
+            @endif
+                @if($mileage->home_to_destination_map)
+                <div class="col-md-4">
+                    <h2>Home to Destination Map</h2>
+                    <img src="{{$mileage->home_to_destination_map}}" height="300px" width="300px" >
+                </div>
                 @endif
         </div>
 
