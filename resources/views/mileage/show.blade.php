@@ -37,9 +37,9 @@
                 {{--</h4>--}}
                 <h2>Reimbursement:</h2>
                 @if($mileage->rental_rate > ($mileage->roundtripmileage-$mileage->commute) * .535)
-                    <h1>Tier 1 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.535 = ${{($mileage->roundtripmileage-$mileage->commute) * .535}}</h1>
+                    <h1>Tier 1 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.535 = ${{number_format(($mileage->roundtripmileage-$mileage->commute) * .535, 2)}}</h1>
                 @else
-                    <h1>Tier 2 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.170 = ${{($mileage->roundtripmileage-$mileage->commute) * .17}}</h1>
+                    <h1>Tier 2 : {{$mileage->roundtripmileage-$mileage->commute}} * 0.170 = ${{number_format(($mileage->roundtripmileage-$mileage->commute) * .17,2)}}</h1>
                 @endif
             </div>
         </div>
@@ -47,19 +47,19 @@
             @if($mileage->campus_to_destination_map)
                 <div class="col-md-4">
                     <h2>Campus to Destination Map</h2>
-                    <img src="{{$mileage->campus_to_destination_map}}" height="300px" width="300px" >
+                    <a href="{{$mileage->campus_to_destination_map}}" target="_blank" ><img src="{{$mileage->campus_to_destination_map}}" height="300px" width="300px" ></a>
                 </div>
             @endif
             @if($mileage->commute_map)
                 <div class="col-md-4">
                     <h2>Commute Map</h2>
-                    <img src="{{$mileage->commute_map}}" height="300px" width="300px" >
+                    <a href="{{$mileage->commute_map}}" target="_blank" ><img src="{{$mileage->commute_map}}" height="300px" width="300px" ></a>
                 </div>
             @endif
                 @if($mileage->home_to_destination_map)
                 <div class="col-md-4">
                     <h2>Home to Destination Map</h2>
-                    <img src="{{$mileage->home_to_destination_map}}" height="300px" width="300px" >
+                    <a href="{{$mileage->home_to_destination_map}}" target="_blank"><img src="{{$mileage->home_to_destination_map}}" height="300px" width="300px" ></a>
                 </div>
                 @endif
         </div>

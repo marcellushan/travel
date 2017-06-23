@@ -21,11 +21,8 @@ class MileageController extends Controller
 
     public function origination(Request $request)
     {
-//       dd($request->all());
         $origination = $request->origination;
         $termination = $request->termination;
-//        dd($data);
-//        $data->return;
         return view('mileage.load_images')->with(compact('origination','termination'));
 
     }
@@ -78,7 +75,7 @@ class MileageController extends Controller
 
         $data = Traveler::find(Session::get('id'));
         $mileage = $data->mileage;
-        dd($mileage->tier_1);
+//        dd($mileage->tier_1);
         if(! $mileage->rental_rate && $mileage->roundtripmileage >= 200)
             return redirect('mileage/comparison/' . $mileage->id);
         return view('mileage.show')->with(compact('data','mileage'));
@@ -97,5 +94,10 @@ class MileageController extends Controller
         $data->rental_rate = $request->rental_rate;
         $data->save();
         return redirect('mileage/show/');
+    }
+
+    public function meals(Request $request)
+    {
+  dd($request);
     }
 }

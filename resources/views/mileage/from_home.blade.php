@@ -5,7 +5,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
        <h2>Departure Location</h2>
         <input type="radio" name="origination"  value="1"> Home</br>
-      <input type="radio" name="origination"  value="0"> Campus
+        <input type="radio" name="origination"  value="0"> Campus
 
         <h2>Returning Location</h2>
         <input type="radio" name="termination" value="1"> Home</br>

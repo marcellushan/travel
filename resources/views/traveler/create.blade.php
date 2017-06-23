@@ -32,10 +32,21 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-3 col-md-offset-3">
             <div class="form-group">
-                <label>Destination</label>
-                <input type="text" class="form-control" name="destination">
+                <label>City</label>
+                <input type="text" class="form-control" name="city">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>State</label>
+                <select name="state" class="form-control" >
+                    <option value="GA">GA</option>
+                    @foreach($states as $state)
+                        <option value="{{$state->abbreviation}}">{{$state->abbreviation}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>

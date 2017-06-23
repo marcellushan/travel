@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use \App\Traveler;
-use \App\State;
-
+use \App\Meal;
 use Session;
 
-class TravelersController extends Controller
+class MealsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,12 +26,7 @@ class TravelersController extends Controller
      */
     public function create()
     {
-        $states = State::get();
-        return view('traveler.create')->with(compact('states'));
-//        return view('mileage.show')->with(compact('data','mileage'));
 
-
-        dd($data);
     }
 
     /**
@@ -44,19 +37,44 @@ class TravelersController extends Controller
      */
     public function store(Request $request)
     {
+//                dd($request->except('_token'));
+        $data = $request->except('_token');
+//        foreach ($data as $stuff) {
+//            if( is_array( $stuff ) ) {
+//                foreach( $stuff as $thing ) {
+//                    dd($stuff);
+//                }
+//            } else {
+//                echo $stuff;
+//            }
+//        }
 
-        $data = $request->all();
-        $traveler = new Traveler($data);
-        $traveler->fill($data);
-        $traveler->departure_time = implode(":", $request->departure_time);
-        $traveler->return_time = implode(":", $request->return_time);
-//        dd($traveler);
-        if($traveler->state <> 'GA')
-            return view('traveler.out_of_state');
-        $traveler->save();
-        Session::put('id',$traveler->id);
-//        return redirect('mileage/create');
-        return redirect('traveler/' . $traveler->id);
+        foreach ($data as $my_date => $meals) {
+            $meals_data = new Meal();
+            foreach ($meals as $meal_type){
+                $meals_data->date = $my_date;
+                $meals_data->traveler_id = Session::get('id');
+                foreach ($meal_type as $key => $value) {
+                    $meals_data->$key = $value;
+//                    echo $value;
+//                    echo "<br>";
+                }
+
+            }
+            $meals_data->save();
+        }
+        dd($meals_data);
+
+//            echo $item;
+//
+//        }
+//        $meals = new Meal();
+//        $meals->date = '2017-06-17';
+//        $meals->breakfast = 1;
+//        $meals->lunch = 0;
+//        $meals->dinner = 1;
+//        $meals->save();
+//        dd($_POST);
     }
 
     /**
@@ -67,17 +85,7 @@ class TravelersController extends Controller
      */
     public function show($id)
     {
-        $data = Traveler::find($id);
-        $data->days = (strtotime($data->return_date) - strtotime($data->departure_date)) / 86400;
-        $my_date = new \DateTime($data->departure_date);
-        $my_date->modify('-1 day');
-//
-//        $date->modify('+1 day');
-//        echo $date->format('Y-m-d') . "\n";
-        return view('traveler.meals')->with(compact('data','my_date'));
-//        echo $data->return_date;
-//        echo date_format(date_create($data->return_date + 1), 'F d Y');
-//        dd($data);
+        //
     }
 
     /**

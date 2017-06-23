@@ -18,8 +18,10 @@ Route::get('mileage/show', 'MileageController@show');
 Route::get('mileage/comparison/{id}', 'MileageController@comparison');
 Route::post('mileage/origination', 'MileageController@origination');
 Route::post('mileage/store', 'MileageController@store');
+Route::post('mileage/meals', 'MileageController@meals');
 Route::post('mileage/update_rental', 'MileageController@updateRental');
 
 Route::resource('traveler', 'TravelersController');
+Route::resource('meals', 'MealsController');
 
 
