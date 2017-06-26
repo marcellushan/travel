@@ -21,6 +21,8 @@ Route::post('mileage/store', 'MileageController@store');
 Route::post('mileage/meals', 'MileageController@meals');
 Route::post('mileage/update_rental', 'MileageController@updateRental');
 
+//Route::get('compute/{id}', 'MealsController@compute');
+
 Route::resource('traveler', 'TravelersController');
 Route::resource('meals', 'MealsController');
 

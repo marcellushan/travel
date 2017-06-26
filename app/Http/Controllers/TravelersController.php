@@ -55,7 +55,7 @@ class TravelersController extends Controller
             return view('traveler.out_of_state');
         $traveler->save();
         Session::put('id',$traveler->id);
-//        return redirect('mileage/create');
+        return redirect('mileage/create');
         return redirect('traveler/' . $traveler->id);
     }
 

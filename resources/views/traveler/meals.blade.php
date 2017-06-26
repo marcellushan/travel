@@ -23,13 +23,13 @@
             {{$my_date->format('Y-m-d')}}
         </td>
         <td>
-             Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][breakfast]', 1)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][breakfast]', 0)}}
+             Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][breakfast]', 0)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][breakfast]', 1)}}
         </td>
         <td>
-            Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][lunch]', 1)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][lunch]', 0)}}
+            Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][lunch]', 0)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][lunch]', 1)}}
         </td>
         <td>
-            Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][dinner]', 1)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][dinner]', 0)}}
+            Yes {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][dinner]', 0)}} No {{Form::radio($my_date->format('Y-m-d') . '[' . $i . '][dinner]', 1)}}
         </td>
     </tr>
     @endfor

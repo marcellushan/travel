@@ -63,5 +63,6 @@
                 </div>
                 @endif
         </div>
+        <a href="../traveler/{{$data->id}}">go to meals</a>
 
 @endsection

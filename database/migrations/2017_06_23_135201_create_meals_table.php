@@ -17,8 +17,11 @@ class CreateMealsTable extends Migration
             $table->increments('id');
             $table->string('date')->nullable();
             $table->boolean('breakfast')->nullable();
+//            $table->float('breakfast_rate')->default(0)->nullable();
             $table->boolean('lunch')->nullable();
+//            $table->float('lunch_rate')->default(0)->nullable();
             $table->boolean('dinner')->nullable();
+//            $table->float('dinner_rate')->default(0)->nullable();
             $table->integer('traveler_id')->nullable();
             $table->timestamps();
         });

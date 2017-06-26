@@ -21,6 +21,7 @@ class CreateTravelersTable extends Migration
             $table->string('departure_time')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
+            $table->boolean('high')->nullable();
             $table->date('return_date')->nullable();
             $table->string('return_time')->nullable();
             $table->timestamps();

@@ -32,13 +32,13 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-2 col-md-offset-3">
             <div class="form-group">
                 <label>City</label>
                 <input type="text" class="form-control" name="city">
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <div class="form-group">
                 <label>State</label>
                 <select name="state" class="form-control" >
@@ -47,6 +47,12 @@
                         <option value="{{$state->abbreviation}}">{{$state->abbreviation}}</option>
                     @endforeach
                 </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>High Per Diem</label><br>
+                Yes  <input type="radio" name="high" value="1"> No  <input type="radio" name="high" value="0">
             </div>
         </div>
     </div>
